@@ -16,6 +16,8 @@ app.use(express.json({ limit: "5mb" })); // to parse req.body
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
+const PORT = process.env.PORT || 3000;
+
 app.get("/", (req, res) => {
   res.send("WELCOME TO BOOK API!");
 });
@@ -24,7 +26,7 @@ app.use("/api/books", bookRoutes);
 app.use("/api/readers", readerRoutes);
 app.use("/api/loans", loanRoutes);
 
-app.listen(5000, () => {
-  console.log(`Server is running on port 5000`);
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
   connectMongoDB();
 });
